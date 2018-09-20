@@ -23,7 +23,7 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/registration_webapp database';
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/registration_webapp';
 
 const pool = new Pool({
   connectionString,
@@ -49,8 +49,10 @@ const regsRoute = regRoute(regsServices);
 
 app.get('/', regsRoute.home);
 
-app.post('/registration',regsRoute.Display);
+app.post('/registration', regsRoute.Display);
+
 app.get('/reset',regsRoute.reset);
+app.get('/plates',regsRoute.getAllregs);
 
  
 let PORT = process.env.PORT || 3011;
