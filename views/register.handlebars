@@ -1,0 +1,21 @@
+<div class="row">
+  <table class="table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Towns</th>
+      <th scope="col">Registration numbers</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each database}}
+    <tr>
+      <td>{{town_name}}</td>
+      <td>{{reg_numbers}}</td> 
+    </tr>
+  {{/each}}
+  </tbody>
+  </table>
+  {{!-- <a href ="/">home</a> --}}
+</div>

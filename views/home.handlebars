@@ -1,0 +1,53 @@
+<div class="row">
+  <form action="/registration" method="POST">
+     <div class="row" id="input">
+      <div class="four columns">
+        <h3>Reg Numbers:</h3> <input type="text"placeholder="enter RegNum " pattern="[A-Z]{2,3}\s\d{3}\W\d{3}" required class="inputName"id="opt">
+      </div>
+    
+       <div class="two columns">
+        <h3>Towns:</h3>
+        <select id="Select"id="opt">
+          <option value="allTowns">All towns</option>
+          <option value="CA ">CapeTown</option>
+          <option value="CJ ">Paarl</option>
+          <option value="CAW">George</option>
+          <option value="CL ">Stellenbonch</option></p></b>
+        </select>
+      </div>
+      </div>
+   
+    
+    <div class="message">
+
+    </div>
+      <div class="container-fluid">
+      <div class="three columns">
+        <input type="submit" class="AddBtn" value="ADD" id="btnAdd">
+      </div>
+     <div class="three columns">
+    <a href="/reset"><input type="button" name= "Reset"value="Reset" class="Reset"> </a>
+    </div>
+    </div>
+  </div>
+      
+    <div class="display">
+      {{displayMessage}}
+    </div>
+   
+  </div>
+
+     <div class="entryOne">
+      <span class="">{{message.entryOne}}</span>
+  </div>
+  <div class="entryTwo">
+      <span class=""> {{message.entryTwo}}</span>
+  </div>
+  <div class="entryThree">
+      <span class=""> {{message.entryThree}}</span>
+  </div>
+
+  </form>
+    <div class="registration"></div>
+  
+</div>
