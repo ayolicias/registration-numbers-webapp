@@ -2,11 +2,11 @@
   <form action="/registration" method="POST">
 
     <div class="row" id="input">
-      <div class="three columns">
+      <div class="four columns">
         <h3>Reg Numbers:</h3><input type="text" name="inputName" class="Name"></input>    
       </div>
       
-      {{!-- <div class="row" id="AddBtn"> --}}
+      <div class="row" id="AddBtn">
       <div class="three columns">
       <button type="submit" class="AddBtn" value="ADD" id="btnAdd">ADD</button>
       </div>
@@ -20,7 +20,7 @@
     </div>
   </div>
     <div class="row">
-        <div class="twelve columns">
+        <div class="four columns">
         <h3>Towns:</h3>
         <select id="Select" id="opt">
           <option value="allTowns">All towns</option>
@@ -31,18 +31,24 @@
         </select>
       </div>
     </div>
+    {{!-- <div class="row"id="clear"> --}}
+       <div class="six columns">
+            <input type="button" name="clear" value="clear" class="clear"id="btnClear">
+          </div>
+    {{!-- </div> --}}
+      
   </form>
  
     {{!-- <div class="message">
     </div> --}}
       
-      <form action="/clear" method="POST">
+      {{!-- <form action="/clear" method="POST">
         <div class="row">
            <div class="twelve columns">
             <input type="button" name="clear" value="clear" class="clear"id="btnClear">
           </div>
         </div>
-      </form>
+      </form> --}}
      
     <div class="display">
       {{#each regs}}

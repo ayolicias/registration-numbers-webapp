@@ -35,9 +35,12 @@ margin: 0;
 }
 
 #AddBtn{
-
+  margin-top: 10rem;
 }
 
-#menu{
-
+#select{
+margin-bottom: 10rem;
 }
+/* #clear{
+  margin-bottom: 180rem;
+} */
