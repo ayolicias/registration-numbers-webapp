@@ -16,6 +16,10 @@ app.engine('handlebars', exphbs({
   }
 }));
 app.set('view engine', 'handlebars');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
@@ -50,7 +54,6 @@ const regsRoute = regRoute(regsServices);
 app.get('/', regsRoute.home);
 
 app.post('/registration', regsRoute.Display);
-
 app.get('/reset',regsRoute.reset);
 app.get('/plates',regsRoute.getAllregs);
 

@@ -2,7 +2,8 @@
   <table class="table-bordered">
   <thead>
     <tr>
-      <th scope="col">towns</th>
+      <th scope="col">id</th>
+      <th scope="col">Towns</th>
       <th scope="col">Registration numbers</th>
       
       
@@ -11,11 +12,13 @@
   <tbody>
     {{#each database}}
     <tr>
+      <td>{{town_id}}</td>
       <td>{{town_name}}</td>
-      <td>{{reg_numbers}}</td> 
+      <td>{{reg}}</td>
+
     </tr>
   {{/each}}
   </tbody>
   </table>
-  {{!-- <a href ="/">home</a> --}}
+  <a href ="/">home</a>
 </div>

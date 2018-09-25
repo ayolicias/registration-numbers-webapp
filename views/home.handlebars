@@ -1,13 +1,28 @@
 <div class="row">
   <form action="/registration" method="POST">
-     <div class="row" id="input">
-      <div class="four columns">
-        <h3>Reg Numbers:</h3><input type="text" name="inputName" class="Name">
+
+    <div class="row" id="input">
+      <div class="eight columns">
+        <h3>Reg Numbers:</h3><input type="text" name="inputName" class="Name"></input>    
       </div>
-    
-       <div class="two columns">
+      
+      {{!-- <div class="row" id="AddBtn"> --}}
+      <div class="twelve columns">
+      <button type="submit" class="AddBtn" value="ADD" id="btnAdd">ADD</button>
+      </div>
+      </div>
+  </form>
+
+  <form action="/select" method="POST">
+  <div class="row">
+    <div class="four columns">
+
+    </div>
+  </div>
+    <div class="row">
+        <div class="twelve columns">
         <h3>Towns:</h3>
-        <select id="Select"id="opt">
+        <select id="Select" id="opt">
           <option value="allTowns">All towns</option>
           <option value="CA ">CapeTown</option>
           <option value="CJ ">Paarl</option>
@@ -15,29 +30,28 @@
           <option value="CL ">Stellenbonch</option></p></b>
         </select>
       </div>
-      </div>
-    <div class="message">
-
     </div>
-      <div class="container-fluid">
-      <div class="three columns">
-        <input type="submit" class="AddBtn" value="ADD" id="btnAdd">
-      </div>
-     <div class="three columns">
-    <a href="/reset"><input type="button" name= "Reset"value="Reset" class="Reset"> </a>
-    </div>
-    </div>
-  </div>
+  </form>
+ 
+    {{!-- <div class="message">
+    </div> --}}
       
+      <form action="/clear" method="POST">
+        <div class="row">
+           <div class="twelve columns">
+            <input type="button" name="clear" value="clear" class="clear"id="btnClear">
+          </div>
+        </div>
+      </form>
+     
     <div class="display">
       {{#each regs}}
       {{reg}}
+      {{name}}
       {{/each}}
     </div>
-   
-  </div>
 
-     <div class="entryOne">
+  <div class="entryOne">
       <span class="">{{message.entryOne}}</span>
   </div>
   <div class="entryTwo">
@@ -46,8 +60,6 @@
   <div class="entryThree">
       <span class=""> {{message.entryThree}}</span>
   </div>
-
-  </form>
     <div class="registration"></div>
-  
-</div>
+   <a href ="/plates">town_name</a>
+  </div>

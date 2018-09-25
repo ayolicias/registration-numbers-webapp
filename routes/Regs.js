@@ -3,7 +3,7 @@ module.exports = function(registrationServices){
     async function home(req,res){
         try{
             let regs = await registrationServices.platesData();
-            console.log(regs);
+            // console.log(regs);
             
             res.render('home', {regs})
         }catch(err){
@@ -28,34 +28,27 @@ async function reset (req, res) {
   };
 
 async function Display(req, res){
+    const name = req.body.inputName;
+    // let regs = req.body.alltowns;
+    console.log(name);
     try{
-        let name = req.body.inputName;
-        let regs = req.body.alltowns;
-
-        if (input.inputName = ''){
-            req.flash("entryOne",'Added')
-        };
-        if (input.inputName = ''){
-            req.flash("entryOne",'Added')
-        };
-        if (input.inputName = ''){
-            req.flash("entryOne",'Added')
-        };
-
-       let displayMessage = await registrationServices.platesData();
-       console.log(regs);
+        if(name === '' || name === undefined){
+            req.flash('info', "Please Enter a valid registration number")
+        }
+       let displayMessage = await registrationServices.platesData(name);
        
-        res.redirect('/', {displayMessage});
+        res.redirect('/');
     }
     catch(err){
         res.send(err.stack)
     }
 }
+
+
 return{
     getAllregs,
     Display,
     home,
     reset
-
 }
 }
