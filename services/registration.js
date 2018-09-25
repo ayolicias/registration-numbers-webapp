@@ -16,7 +16,7 @@ module.exports = function (pool){
 
     async function selectplate(regs){
         let result = await pool.query('select town_name, reg from towns join registration_numbers on towns.id = registration_numbers.towns.id where initials = $1',[regs]);
-        return result.rows[0];
+        return result.rows;
     }
     async function count() {
         let count = await pool.query('select count(*) FROM registration_numbers');
