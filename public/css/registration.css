@@ -34,13 +34,8 @@ margin: 0;
   margin-bottom: 5em;
 }
 
-#AddBtn{
-  margin-top: 10rem;
+#btnAdd{
+  background-color: rgb(216, 240, 193);
 }
 
-#select{
-margin-bottom: 10rem;
-}
-/* #clear{
-  margin-bottom: 180rem;
-} */
+

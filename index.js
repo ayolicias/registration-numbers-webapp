@@ -49,16 +49,14 @@ let regRoute = require('./routes/Regs');
 const  regsServices = regServices(pool);
 const regsRoute = regRoute(regsServices);
 
-
-
 app.get('/', regsRoute.home);
-
-app.post('/registration', regsRoute.Display);
-app.get('/reset',regsRoute.reset);
-app.get('/plates',regsRoute.getAllregs);
-
+app.post('/registration', regsRoute.addReg);
+// app.get('/reset',regsRoute.reset);
+// app.get('/plates',regsRoute.getAllregs);
+app.get('/filter', regsRoute.filter);
+ app.get('/filter/:town', regsRoute.filterTowns);
  
 let PORT = process.env.PORT || 3011;
 app.listen(PORT, function(){
-    console.log("App started on Port", PORT);
-});
+console.log("App started on Port", PORT);
+}); 

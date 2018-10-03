@@ -1,4 +1,7 @@
+<!DOCTYPE html>
+
 <div class="row">
+
   <form action="/registration" method="POST">
 
     <div class="row" id="input">
@@ -6,56 +9,31 @@
         <h3>Reg Numbers:</h3><input type="text" name="inputName" class="Name"></input>    
       </div>
       
-      <div class="row" id="AddBtn">
+        <div class="four columns">
+        <h3>Towns:</h3>
+        <select id="Select" name="towns" onchange="selectTown()" >
+          <option value="allTowns" href="/allTowns">All towns</option>
+          <option value="CA" href="/CA">CapeTown</option>
+          <option value="CY" href="/CJ">Paarl</option>
+          <option value="CAW"href="/CAW">George</option>
+          <option value="CL"href="/CL">Stellenbonch</option></p></b>
+        </select>
+      </div>
+      </div>
+      <br>
+
+    <div class="row">
       <div class="three columns">
       <button type="submit" class="AddBtn" value="ADD" id="btnAdd">ADD</button>
       </div>
+      <div class="two columns">
+            <input type="button" name="clear" value="clear" class="clear"id="btnAdd">
+          </div>
       </div>
   </form>
-
-  <form action="/select" method="POST">
-  <div class="row">
-    <div class="four columns">
-
-    </div>
-  </div>
-    <div class="row">
-        <div class="four columns">
-        <h3>Towns:</h3>
-        <select id="Select" id="opt">
-          <option value="allTowns">All towns</option>
-          <option value="CA ">CapeTown</option>
-          <option value="CJ ">Paarl</option>
-          <option value="CAW">George</option>
-          <option value="CL ">Stellenbonch</option></p></b>
-        </select>
-      </div>
-    </div>
-    {{!-- <div class="row"id="clear"> --}}
-       <div class="six columns">
-            <input type="button" name="clear" value="clear" class="clear"id="btnClear">
-          </div>
-    {{!-- </div> --}}
-      
-  </form>
- 
-    {{!-- <div class="message">
-    </div> --}}
-      
-      {{!-- <form action="/clear" method="POST">
-        <div class="row">
-           <div class="twelve columns">
-            <input type="button" name="clear" value="clear" class="clear"id="btnClear">
-          </div>
-        </div>
-      </form> --}}
-     
-    <div class="display">
-      {{#each regs}}
-      {{reg}}
-      {{name}}
+ {{#each regs}}
+    <div class="display">{{reg}}</div>
       {{/each}}
-    </div>
 
   <div class="entryOne">
       <span class="">{{message.entryOne}}</span>
@@ -69,3 +47,11 @@
     <div class="registration"></div>
    <a href ="/plates">town_name</a>
   </div>
+
+  <script>
+    function selectTown(){
+    let selectElem=document.querySelector('#Select');
+     console.log(selectElem.value);
+     location.href='/filter/'+selectElem.value;
+    }
+  </script>
