@@ -51,7 +51,7 @@ const regsRoute = regRoute(regsServices);
 
 app.get('/', regsRoute.home);
 app.post('/registration', regsRoute.addReg);
-// app.get('/reset',regsRoute.reset);
+app.get('/reset',regsRoute.reset);
 // app.get('/plates',regsRoute.getAllregs);
 app.get('/filter', regsRoute.filter);
  app.get('/filter/:town', regsRoute.filterTowns);

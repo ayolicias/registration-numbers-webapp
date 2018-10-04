@@ -8,8 +8,8 @@ module.exports = function(registrationServices){
             // let regs = await registrationServices.selectnames(insertReg);
             //  console.log("here",insertReg);
             // {regs:result}
-            res.render('home')
-        }catch(err){
+            res.render('home',{reg})
+            }catch(err){
             console.log(err.stack) 
         }
     }
@@ -19,10 +19,8 @@ module.exports = function(registrationServices){
             let reg = req.body.inputName;
             let name = req.body.alltowns;
             let insertReg = await registrationServices.insert(reg)
-            // let regs = await registrationServices.selectnames(insertReg);
-             console.log("here",insertReg);
-            
-            res.render('home')
+           
+            res.render('home');
         }catch(err){
             console.log(err.stack) 
         }
@@ -37,20 +35,19 @@ async function getAllregs(req, res){
     catch(err){}
 }
 
-// async function reset (req, res) {
-//     await registrationServices.clear();
+async function reset (req, res) {
+    await registrationServices.clear();
    
-//     res.redirect('/');
-//   };
+    res.redirect('/');
+  };
   
 async function Display(req, res){
     const name = req.body.inputName;
-    let regs = req.body.alltowns;
-    console.log(name);
+    let regs = req.body.town;
+    // console.log(name);
     try{
-        if(name === '' || name === undefined){
-            req.flash('info', "Please Enter a valid registration number")
-        }
+        res.render('home',{regs:results});
+
        let displayMessage = await registrationServices.platesData(name, regs);
 
         res.send('/');
@@ -66,11 +63,10 @@ async function filter(req, res){
 
 async function filterTowns(req, res){
     let town = req.params.town; 
-    let result= await registrationServices.selectplate(town);
-    // console.log(result);
-    res.render('home',{regs:result});
-}
 
+    let results= await registrationServices.selectplate(town);
+    res.render('home',{regs:results});
+}
 
 return{
     getAllregs,
@@ -78,7 +74,7 @@ return{
     home,
     addReg,
     filterTowns,
-    // reset,
+    reset,
     filter
 }
 }

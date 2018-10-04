@@ -12,11 +12,11 @@
         <div class="four columns">
         <h3>Towns:</h3>
         <select id="Select" name="towns" onchange="selectTown()" >
-          <option value="allTowns" href="/allTowns">All towns</option>
+          <option value="alltowns" href="/alltowns">All towns</option>
           <option value="CA" href="/CA">CapeTown</option>
-          <option value="CY" href="/CJ">Paarl</option>
-          <option value="CAW"href="/CAW">George</option>
-          <option value="CL"href="/CL">Stellenbonch</option></p></b>
+          <option value="CAW" href="/CAW">Paarl</option>
+          <option value="CY"href="/CY">George</option>
+          <option value="CJ"href="/CJ">Stellenbosch</option>
         </select>
       </div>
       </div>
@@ -24,12 +24,12 @@
 
     <div class="row">
       <div class="three columns">
-      <button type="submit" class="AddBtn" value="ADD" id="btnAdd">ADD</button>
+      <button type="submit" class="AddBtn" value="ADD"id="btnAdd">ADD</button>
       </div>
-      <div class="two columns">
-            <input type="button" name="clear" value="clear" class="clear"id="btnAdd">
-          </div>
-      </div>
+      <div class="three columns">
+    <a href="/reset"><input type="button" name= "Reset"value="Reset"id="btnAdd" class="Reset"> </a>
+  </div>
+  </div>
   </form>
  {{#each regs}}
     <div class="display">{{reg}}</div>
@@ -45,7 +45,7 @@
       <span class=""> {{message.entryThree}}</span>
   </div>
     <div class="registration"></div>
-   <a href ="/plates">town_name</a>
+   
   </div>
 
   <script>
