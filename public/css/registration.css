@@ -1,23 +1,32 @@
-@media query(max-width: 300px) {
-  li {
+ /* @media query(max-width: 300px) { */
+  .display li {
     list-style: none;
-    border-radius: 15px;
-    background-color: #F8F9F9;
-    width: 8em;
-    margin-left: 5px;
-    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: rgb(218, 203, 5);
+    width: 12em;
+    height: 3em;
+    margin: 20px auto;
     display: block;
     padding: 10px;
     text-align: center;
+    font-size: 16px;
+    font-weight: bold;
   }
-}
+
+  li.reg{
+    margin:20px;
+    float: left;
+  }
 
 
-body{
+
+
+/* body{
 box-sizing: border-box;
-margin: 0;
+margin: 0; */
 /* margin-top: 5em; */
-}
+/* }
 .header{
   text-align: center;
   font-stretch: extra-expanded;
@@ -27,15 +36,55 @@ margin: 0;
   margin-bottom: 5em;
   background-color: #95A5A6;
 }
-.container{
-  background-color: #f1f1f1;
-  margin-top: 5em;
+.wrapper{
+  back#btnAdd{
+  background-color: rgb(216, 240, 193);
+}ground-color: #f1f1f1;
+  marg#btnAdd{
+  background-color: rgb(216, 240, 193);
+}in-top: 5em;
+  text#btnAdd{
+  background-color: rgb(216, 240, 193);
+}-align: center;
+  marg#btnAdd{
+  background-color: rgb(216, 240, 193);
+}in-bottom: 5em;
+} */
+
+/* #btnAdd{
+  background-color: rgb(216, 240, 193);
+} */
+ 
+.allSections {
   text-align: center;
-  margin-bottom: 5em;
+  background-color: silver;
 }
 
-#btnAdd{
-  /* background-color: rgb(216, 240, 193); */
+.sectionOne h {
+  text-align: center;
+  font-size: 3em;
+  
+ 
 }
 
+.header {
+  background-color: blueviolet;
+  padding: 5em;
 
+}
+.header h1 {
+  font-size: 5em;
+  font-family: cursive;
+  font-stretch: expanded;
+}
+#heading {
+  text-align: center;
+  margin-top: 5em;
+  text-decoration: rgb(179, 67, 67);
+  font-size: 2em;
+}
+.buttons{
+  margin-top: 15em;
+
+ 
+}

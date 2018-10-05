@@ -63,6 +63,7 @@ async function filter(req, res){
 
 async function filterTowns(req, res){
     let town = req.params.town; 
+    console.log(town)
 
     let results= await registrationServices.selectplate(town);
     res.render('home',{regs:results});

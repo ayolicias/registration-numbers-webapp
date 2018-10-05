@@ -5,7 +5,6 @@ module.exports = function (pool){
         console.log(reg.rows)
         return reg.rows;
     }
-
     async function selectnames(regnumber){
         let regNum = await pool.query('select * from registration_numbers where reg=$1',[regnumber]);
         return regNum.rows;
@@ -29,8 +28,13 @@ module.exports = function (pool){
 
 
     async function selectplate(regs){
-        let result = await pool.query('SELECT reg from towns join registration_numbers on town_id=towns.id where initials=$1',[regs]);
-        return result.rows;
+        if(regs !== "alltowns"){
+            let result = await pool.query('SELECT reg from towns join registration_numbers on town_id=towns.id where initials=$1',[regs]);
+            return result.rows;
+        }
+        else{
+            return await platesData();
+        }
     }
     async function allTowns(){
         result = await pool.query('select reg from registration_numbers')
