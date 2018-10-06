@@ -26,6 +26,9 @@ module.exports = function (pool){
     //        let update = await pool.query('update towns set town_name')
     //    }
 
+    async function clear(){
+        await pool.query('delete from registration_numbers');
+    }
 
     async function selectplate(regs){
         if(regs !== "alltowns"){
@@ -45,10 +48,7 @@ module.exports = function (pool){
         let count = await pool.query('select count(*) FROM registration_numbers');
         return parseInt(count.rows[0].count);
     }
-    async function clear() {
-        let remove = await pool.query('DELETE FROM towns');
-         return remove.rows[0];
-      }
+    
 
    return{
     platesData,

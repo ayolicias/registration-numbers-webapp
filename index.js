@@ -51,10 +51,9 @@ const regsRoute = regRoute(regsServices);
 
 app.get('/', regsRoute.home);
 app.post('/registration', regsRoute.addReg);
-app.get('/reset',regsRoute.reset);
-// app.get('/plates',regsRoute.getAllregs);
+app.get('/Reset', regsRoute.reset);
 app.get('/filter', regsRoute.filter);
- app.get('/filter/:town', regsRoute.filterTowns);
+app.get('/filter/:town', regsRoute.filterTowns);
  
 let PORT = process.env.PORT || 3011;
 app.listen(PORT, function(){

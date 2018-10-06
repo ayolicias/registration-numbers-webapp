@@ -20,12 +20,12 @@ module.exports = function(registrationServices){
             let name = req.body.alltowns;
             let insertReg = await registrationServices.insert(reg)
            
-            res.render('home');
+            res.render('home',{reg});
         }catch(err){
             console.log(err.stack) 
         }
     }
-async function getAllregs(req, res){
+    async function getAllregs(req, res){
     try{
         let towns = await registrationServices.platesData();
         let database = towns;
@@ -35,11 +35,14 @@ async function getAllregs(req, res){
     catch(err){}
 }
 
-async function reset (req, res) {
-    await registrationServices.clear();
-   
-    res.redirect('/');
-  };
+async function reset(req, res) {
+    try{
+        await services.clear();
+        res.redirect('/');
+    } catch (err) {
+        res.send(err.stack)
+    }
+}
   
 async function Display(req, res){
     const name = req.body.inputName;
@@ -63,7 +66,7 @@ async function filter(req, res){
 
 async function filterTowns(req, res){
     let town = req.params.town; 
-    console.log(town)
+    // console.log(town)
 
     let results= await registrationServices.selectplate(town);
     res.render('home',{regs:results});
