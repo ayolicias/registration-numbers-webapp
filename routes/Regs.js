@@ -4,10 +4,7 @@ module.exports = function(registrationServices){
         try{
             let reg = req.body.inputName;
             let name = req.body.alltowns;
-            // let insertReg = await registrationServices.insert(reg)
-            // let regs = await registrationServices.selectnames(insertReg);
-            //  console.log("here",insertReg);
-            // {regs:result}
+            
             res.render('home',{reg})
             }catch(err){
             console.log(err.stack) 
@@ -47,9 +44,10 @@ async function reset(req, res) {
 async function Display(req, res){
     const name = req.body.inputName;
     let regs = req.body.town;
-    // console.log(name);
+
+
     try{
-        res.render('home',{regs:results});
+        res.render('home',{regsinsert:results});
 
        let displayMessage = await registrationServices.platesData(name, regs);
 
@@ -59,6 +57,15 @@ async function Display(req, res){
         res.send(err.stack)
     }
 }
+async function regNumber(name,regs){
+    let reg = await  findUser(name);
+    if (reg.length == 0) {
+     await insert(name,regs);
+    }
+     else{
+      await updateRegs(name,regs);
+    }
+  }
 
 async function filter(req, res){
     res.redirect('/')
@@ -71,7 +78,6 @@ async function filterTowns(req, res){
     let results= await registrationServices.selectplate(town);
     res.render('home',{regs:results});
 }
-
 return{
     getAllregs,
     Display,
@@ -79,6 +85,7 @@ return{
     addReg,
     filterTowns,
     reset,
-    filter
+    filter,
+    regNumber
 }
 }

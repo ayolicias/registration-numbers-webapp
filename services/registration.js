@@ -21,10 +21,7 @@ module.exports = function (pool){
         let foundId = foundTag.rows[0].id;
         let found = await pool.query('insert into registration_numbers (reg, town_id) values ($1,$2)', [reg, foundId])
         return found.rows;
-       }
-    //    async function updateReg(reg){
-    //        let update = await pool.query('update towns set town_name')
-    //    }
+       }platesData
 
     async function clear(){
         await pool.query('delete from registration_numbers');
