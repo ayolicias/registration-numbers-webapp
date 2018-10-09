@@ -49,7 +49,7 @@ module.exports = function(registrationServices){
 //     catch(err){}
 // }
 
-async function reset(req, res) {
+async function clearAll(req, res) {
     try{
         await registrationServices.clear();
         res.redirect('/');
@@ -64,19 +64,7 @@ async function Display(req, res){
     let regs = req.body.town;
 
     try{
-        // if (name === "" && regs === undefined){
-        //     req.flash("entryOne",'Added')
-        // }
-
-        // else if (name ===''|| name === undefined){
-        //     req.flash("entryTwo", 'Already Exits')
-
-        // }
-
-        // else if (regs === ""){
-        //     req.flash("entryThree", 'invalid RegNumber')
-        // }
-        
+      
         res.render('home',{name:results});
 
        let displayMessage = await registrationServices.platesData(name, regs);
@@ -113,7 +101,7 @@ return{
     home,
     addReg,
     filterTowns,
-    reset,
+    clearAll,
     filter,
     regNumber
 }

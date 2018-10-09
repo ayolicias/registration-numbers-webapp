@@ -22,7 +22,8 @@ module.exports = function (pool){
        }
 
     async function clear(){
-        await pool.query('delete from towns');
+        let remove = await pool.query('delete from registration_numbers');
+        return remove.rows
     }
 
     async function selectplate(regs){
