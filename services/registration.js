@@ -22,17 +22,16 @@ module.exports = function (pool){
        }
 
     async function clear(){
-        let remove = await pool.query('delete from registration_numbers');
-        return remove.rows
+        let remove = await pool.query('DELETE FROM registration_numbers');
+        return remove.rows;
     }
 
     async function selectplate(regs){
         let townData = await selectTown(regs);
         if(regs !== "alltowns"){
-            //faka logic to filter here
             return await filterTown(townData);
         }
-        else{
+        else{header
             return await platesData();
         }
     }

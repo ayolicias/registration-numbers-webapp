@@ -5,7 +5,7 @@ module.exports = function(registrationServices){
             let reg = req.body.inputName;
             let regs = await registrationServices.platesData()
             
-            res.render('home',{reg, regs})
+            res.render('home',{regs})
             }catch(err){
             res.send(err.stack);
         }
@@ -39,25 +39,10 @@ module.exports = function(registrationServices){
         }
     }
 
-//     async function getAllregs(req, res){
-//     try{
-//         let towns = await registrationServices.platesData();
-//         let database = towns;
-
-//         res.render('home',{database});
-//     }
-//     catch(err){}
-// }
-
-async function clearAll(req, res) {
-    try{
-        await registrationServices.clear();
-        res.redirect('/');
-
-    } catch (err) {
-        res.send(err.stack)
-    }
-}
+async function clearAll (req, res) {
+   let clear = await registrationServices.clear();
+    res.redirect('/');
+  };
   
 async function Display(req, res){
     const name = req.body.inputName;
@@ -71,7 +56,7 @@ async function Display(req, res){
 
         res.send('/');
     }
-    catch(err){
+    catch(err){regs
         res.send(err.stack)
     }
 }

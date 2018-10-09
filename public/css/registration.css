@@ -21,7 +21,7 @@
     margin: 20px auto;
     display: block;
     padding: 10px;
-    text-align: center;
+    text-align: left;
     font-size: 12px;
     font-weight: bold;
   }
@@ -63,5 +63,14 @@
 .buttons{
   margin-top: 3em;
 
- 
+}
+
+.entryOne{
+  color: #F54D32;
+}
+.entryTwo{
+  color: #F54D32;
+}
+.entryThree{
+  color: #F54D32;
 }

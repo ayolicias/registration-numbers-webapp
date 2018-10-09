@@ -1,70 +1,67 @@
 <!DOCTYPE html>
-  <div class="allSections">
-    <div class="header">
-      <h1>Registration numbers</h1>
-    </div>
+<div class="allSections">
+  <div class="header">
+    <h1>Registration numbers WebApp</h1>
+  </div>
   <form action="/registration" method="POST">
-  <div class="row sectionOne" id="input">
+    <div class="row sectionOne" id="input">
       <div class="col-md-12" id="heading">
         <b><button type="button" class="btn btn-lg btn-primary" disabled>Reg Numbers</button>
         </b><input type="text" name="inputName" class="Name"></input>
+        </div>
+        </div>
         <div class="row buttons">
-        <div class="col-md-12" id="Add">
-        <button type="submit" class="btn-success"value= "ADD">ADD</button>
-        <a href="/Reset"><button class="btn-success"value= "Reset">Reset</button></a>
-
+          <div class="col-md-12">
+            <button type="submit" class="btn-success" value="ADD">ADD</button>
+          </div>
         </div>
-        </div>
-            
-      <hr>
+        <hr>
   </form>
+  
 
   <div class="row">
     <div class="col-md-12">
-          {{!-- <h3><b>Select Towns</b></h3> --}}
-        <select id="Select" name="towns" onchange="selectTown()" >
-          <option  value="alltowns">Select Towns</option>
-          <option  value="alltowns">All towns</option>
-          <option value="CA" href="/CA">CapeTown</option>
-          <option value="CAW" href="/CAW">Paarl</option>
-          <option value="CY"href="/CY">George</option>
-          <option value="CJ"href="/CJ">Stellenbosch</option>
-        </select>
+      <select id="Select" name="towns" onchange="selectTown()">
+        <option value="alltowns">Select Towns</option>
+        <option value="alltowns">All towns</option>
+        <option value="CA" href="/CA">CapeTown</option>
+        <option value="CAW" href="/CAW">Paarl</option>
+        <option value="CY" href="/CY">George</option>
+        <option value="CJ" href="/CJ">Stellenbosch</option>
+      </select>
+
+      <a href="/reset"><button type="button"class="btn-success">Reset</button></a>
     </div>
   </div>
-  <div class="display">
 
+  <div class="row">
+    <div class="displayReg">
+      <ul class="display">
+        {{#each regs}}
+        <li class="col-md-2 reg">{{reg}}</li>
+        {{/each}}
+      </ul>
     </div>
-
-<div class="row"> 
-  <div class="displayReg">
-    <ul class="display" >
-       {{#each regs}}
-          <li class="col-md-2 reg">{{reg}}</li>
-      {{/each}}
-    </ul> 
   </div>
-</div> 
- 
+
   <div class="entryOne">
-      <span class="">{{messages.entryOne}}</span>
+    <span class="">{{messages.entryOne}}</span>
   </div>
   <div class="entryTwo">
-      <span class=""> {{messages.entryTwo}}</span>
-  </div>
+    <span class=""> {{messages.entryTwo}}</span>
+    </div>
+  
   <div class="entryThree">
-      <span class=""> {{messages.entryThree}}</span>
-  </div>
-  <div class="registration"></div>
-   
+    <span class=""> {{messages.entryThree}}</span>
   </div>
 
-  </div>
 
-  <script>
-    function selectTown(){
-    let selectElem=document.querySelector('#Select');
-     console.log(selectElem.value);
-     location.href='/filter/'+selectElem.value;
-    }
-  </script>
+
+
+<script>
+  function selectTown() {
+    let selectElem = document.querySelector('#Select');
+    console.log(selectElem.value);
+    location.href = '/filter/' + selectElem.value;
+  }
+</script>
