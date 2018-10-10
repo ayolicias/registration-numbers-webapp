@@ -14,26 +14,44 @@ module.exports = function(registrationServices){
     async function addReg(req,res){
         try{
             let regi = req.body.inputName;
+            let regTag = regi.substring(0,3).toUpperCase().trim();
+
+            let isValid = await registrationServices.isValidTown(regTag);
+             console.log(isValid)
+            
+            let repeatedReg = await registrationServices.duplicateReg(regi);
+            console.log("Duplicate: ",repeatedReg);
+
             if(regi === "" || regi === undefined){
-                req.flash("entryOne",'Enter Regnumber')  
+                req.flash("entryOne",'Enter Regnumber')
+                res.redirect('/');
+                
+            }
+            else if(isValid === false){
+                req.flash("entryOne",'Reg Number is inValid. Please Enter a new Regnumber')
+                res.redirect('/');
+            }
+            else if(repeatedReg === true){
+               req.flash("entryOne",'Reg Number is a duplicate. Please Enter a new Regnumber')
+               res.redirect('/');
             }
             else{
-                let regTag = regi.substring(0,3).toUpperCase().trim();
                 let towns = await registrationServices.selectTown(regTag);
-
-               if (towns.length ===0){
-                   req.flash("entryTwo",'invalid REgnumber')
-               }
-
-               else{
-                   await registrationServices.insert(regi, towns);
-               }
-
-
+                await registrationServices.insert(regi, towns);
+                res.redirect('/');
             }
+           
+                // console.log("Duplicate: ",repeatedReg);
+                
 
+            //    if (towns.length === 0 || isValid === false){
+            //        req.flash("entryTwo",'invalid Regnumber')
+            //    }
 
-            res.redirect('/');
+            //     else if(isValid === true){
+            //       
+            //    }
+  
         }catch(err){
             console.log(err.stack) 
         }

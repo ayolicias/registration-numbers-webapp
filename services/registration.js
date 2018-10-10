@@ -10,6 +10,10 @@ module.exports = function (pool){
         return result.rows;
     }
 
+    async function isValidTown(town){
+        let result = await pool.query('select * from towns where initials=$1',[town]);
+        return result.rowCount === 1;
+    }
     async function selectnames(regnumber){
         let regNum = await pool.query('select * from registration_numbers where reg=$1',[regnumber]);
         return regNum.rows;
@@ -53,10 +57,15 @@ module.exports = function (pool){
     }
     
     async function count() {
-        let count = await pool.query('select count(*) FROM registration_numbers');
+        let count = await pool.query('select count(*) FROM registration_numbers',);
         return parseInt(count.rows[0].count);
     }
-    
+
+    async function duplicateReg(reg){
+        let duplicate = await pool.query('select * from registration_numbers where reg=$1',[reg]);
+        return duplicate.rowCount === 1;
+    }
+
 
    return{
     platesData,
@@ -67,6 +76,8 @@ module.exports = function (pool){
     count,
     allTowns,
     selectTown,
-    filterTown
+    filterTown,
+    duplicateReg,
+    isValidTown
    }
 }
