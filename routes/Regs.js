@@ -14,41 +14,58 @@ module.exports = function(registrationServices){
     async function addReg(req,res){
         try{
             let regi = req.body.inputName;
+            let regTag = regi.substring(0,3).toUpperCase().trim();
+            console.log(regTag);
+            
+            let isValid = await registrationServices.isValidTown(regTag);
+            isValid = isValid.length;
+             console.log(isValid)
+
+            let repeatedReg = await registrationServices.duplicateReg(regi);
+            repeatedReg = repeatedReg.length;
+            console.log("Duplicate: ",repeatedReg);
+
             if(regi === "" || regi === undefined){
-                req.flash("entryOne",'Enter Regnumber')  
+                req.flash("entryOne",'Enter Regnumber')
+                res.redirect('/');  
             }
+            else if(isValid === 0){
+                req.flash("entryOne",'Reg Number is inValid. Please Enter a new Regnumber')
+                res.redirect('/');
+            }
+
+            else if(repeatedReg === 1){
+                req.flash("entryOne",'Reg Number is a duplicate. Please Enter a new Regnumber')
+                res.redirect('/');
+             }
+
+        
             else{
-                let regTag = regi.substring(0,3).toUpperCase().trim();
                 let towns = await registrationServices.selectTown(regTag);
-
-               await registrationServices.insert(regi, towns);
-            //    if (towns.length ===0){
-            //        req.flash("entryTwo",'invalid REgnumber')
-            //    }
-
-            //    else{
-                   
-            //    }
-
-
+                await registrationServices.insert(regi, towns);
+                res.redirect('/');
             }
 
 
-            res.redirect('/');
+
+
+           
+                // console.log("Duplicate: ",repeatedReg);
+                
+
+            //    if (towns.length === 0 || isValid === false){
+            //        req.flash("entryTwo",'invalid Regnumber')
+            //    }
+
+            //     else if(isValid === true){
+            //       
+            //    }
+  
         }catch(err){
-            console.log(err.stack) 
+           console.log(err.stack) 
         }
     }
 
-//     async function getAllregs(req, res){
-//     try{
-//         let towns = await registrationServices.platesData();
-//         let database = towns;
-
-//         res.render('home',{database});
-//     }
-//     catch(err){}
-// }
 
 async function clearAll(req, res) {
     try{
@@ -95,7 +112,7 @@ async function filterTowns(req, res){
     // console.log(town)
 
     let results= await registrationServices.selectplate(town);
-    res.render('home',{regs:results});
+    res.render('home',{results});
 }
 return{
     Display,

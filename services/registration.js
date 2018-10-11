@@ -6,13 +6,13 @@ module.exports = function (pool){
     }
 
     async function selectTown(town){
-        let result = await pool.query('select id from towns where initials=$1',[town]);
+        let result = await pool.query('select from towns where initials=$1',[town]);
         return result.rows[0];
     }
 
     async function isValidTown(town){
         let result = await pool.query('select * from towns where initials=$1',[town]);
-        return result.rowCount === 1;
+        return result.rows;
     }
     async function selectnames(regnumber){
         let regNum = await pool.query('select * from registration_numbers where reg=$1',[regnumber]);
@@ -36,17 +36,18 @@ module.exports = function (pool){
         if(regs !== "alltowns"){
             return await filterTown(townData);
         }
-        else{header
-            return await platesData();
+        else{
+            return await selectTown();
         }
     }
     async function filterTown(data){
        let reg = await platesData();
        let temp = [];
-
-        let id = data[0].id;
+       console.log(temp)
+        
+        let id = data.id;
         for (var i = 0; i < reg.length; i++) {
-        if(id === reg[i].town_id){
+        if(id === reg[i].town_name){
         temp.push(reg[i]);
          }
        }
@@ -64,7 +65,7 @@ module.exports = function (pool){
 
     async function duplicateReg(reg){
         let duplicate = await pool.query('select * from registration_numbers where reg=$1',[reg]);
-        return duplicate.rowCount === 1;
+        return duplicate.rows;
     }
 
 
