@@ -19,11 +19,11 @@ module.exports = function(registrationServices){
             
             let isValid = await registrationServices.isValidTown(regTag);
             isValid = isValid.length;
-             console.log(isValid)
+             //console.log(isValid)
 
             let repeatedReg = await registrationServices.duplicateReg(regi);
             repeatedReg = repeatedReg.length;
-            console.log("Duplicate: ",repeatedReg);
+            //console.log("Duplicate: ",repeatedReg);
 
             if(regi === "" || regi === undefined){
                 req.flash("entryOne",'Enter Regnumber')
@@ -42,7 +42,13 @@ module.exports = function(registrationServices){
         
             else{
                 let towns = await registrationServices.selectTown(regTag);
-                await registrationServices.insert(regi, towns);
+                // console.log('---')
+
+                // console.log(towns[0].id)
+
+                // console.log('---')
+
+                await registrationServices.insert(regi, towns[0].id);
                 res.redirect('/');
             }
 
@@ -109,10 +115,10 @@ async function filter(req, res){
 
 async function filterTowns(req, res){
     let town = req.params.town; 
-    // console.log(town)
+  
 
     let results= await registrationServices.selectplate(town);
-    res.render('home',{results});
+    res.render('home',{regs:results});
 }
 return{
     Display,

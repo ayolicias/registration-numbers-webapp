@@ -6,8 +6,9 @@ module.exports = function (pool){
     }
 
     async function selectTown(town){
-        let result = await pool.query('select from towns where initials=$1',[town]);
-        return result.rows[0];
+        let result = await pool.query('select id from towns where initials=$1',[town]);
+        console.log(result.rows)
+        return result.rows;
     }
 
     async function isValidTown(town){
@@ -19,10 +20,10 @@ module.exports = function (pool){
         return regNum.rows;
     }
 
-    async function insert(reg, town) {
-        let foundId = await selectTown(town);
-      
-        let found = await pool.query('insert into registration_numbers (reg, town_id) values ($1,$2)', [reg, foundId])
+   async function insert(reg,town) {
+       
+        let found = await pool.query('insert into registration_numbers (reg, town_id) values ($1,$2)', [reg, town])
+
         return found.rows;
        }
 
@@ -37,25 +38,28 @@ module.exports = function (pool){
             return await filterTown(townData);
         }
         else{
-            return await selectTown();
+            return await platesData();
         }
     }
     async function filterTown(data){
-       let reg = await platesData();
-       let temp = [];
-       console.log(temp)
         
-        let id = data.id;
+       let reg = await platesData();
+
+       let temp = [];
+        
+        let id = data[0].id;
         for (var i = 0; i < reg.length; i++) {
-        if(id === reg[i].town_name){
+        if(id === reg[i].town_id){
         temp.push(reg[i]);
          }
        }
+    
        return temp;
     }
+
     async function allTowns(){
         result = await pool.query('select reg from registration_numbers')
-        return result.rows;
+        return result.rows[0];
     }
     
     async function count() {
@@ -67,8 +71,6 @@ module.exports = function (pool){
         let duplicate = await pool.query('select * from registration_numbers where reg=$1',[reg]);
         return duplicate.rows;
     }
-
-
    return{
     platesData,
     selectnames,
