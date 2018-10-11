@@ -6,8 +6,8 @@ module.exports = function (pool){
     }
 
     async function selectTown(town){
-        let result = await pool.query('select * from towns where initials=$1',[town]);
-        return result.rows;
+        let result = await pool.query('select id from towns where initials=$1',[town]);
+        return result.rows[0];
     }
 
     async function isValidTown(town){
@@ -20,7 +20,8 @@ module.exports = function (pool){
     }
 
     async function insert(reg, town) {
-        let foundId = town[0].id;
+        let foundId = await selectTown(town);
+      
         let found = await pool.query('insert into registration_numbers (reg, town_id) values ($1,$2)', [reg, foundId])
         return found.rows;
        }

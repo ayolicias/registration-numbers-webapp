@@ -5,7 +5,7 @@ module.exports = function(registrationServices){
             let reg = req.body.inputName;
             let regs = await registrationServices.platesData()
             
-            res.render('home',{regs})
+            res.render('home',{reg, regs})
             }catch(err){
             res.send(err.stack);
         }
@@ -14,53 +14,51 @@ module.exports = function(registrationServices){
     async function addReg(req,res){
         try{
             let regi = req.body.inputName;
-            let regTag = regi.substring(0,3).toUpperCase().trim();
-
-            let isValid = await registrationServices.isValidTown(regTag);
-             console.log(isValid)
-            
-            let repeatedReg = await registrationServices.duplicateReg(regi);
-            console.log("Duplicate: ",repeatedReg);
-
             if(regi === "" || regi === undefined){
-                req.flash("entryOne",'Enter Regnumber')
-                res.redirect('/');
-                
-            }
-            else if(isValid === false){
-                req.flash("entryOne",'Reg Number is inValid. Please Enter a new Regnumber')
-                res.redirect('/');
-            }
-            else if(repeatedReg === true){
-               req.flash("entryOne",'Reg Number is a duplicate. Please Enter a new Regnumber')
-               res.redirect('/');
+                req.flash("entryOne",'Enter Regnumber')  
             }
             else{
+                let regTag = regi.substring(0,3).toUpperCase().trim();
                 let towns = await registrationServices.selectTown(regTag);
-                await registrationServices.insert(regi, towns);
-                res.redirect('/');
+
+               await registrationServices.insert(regi, towns);
+            //    if (towns.length ===0){
+            //        req.flash("entryTwo",'invalid REgnumber')
+            //    }
+
+            //    else{
+                   
+            //    }
+
+
             }
-           
-                // console.log("Duplicate: ",repeatedReg);
-                
 
-            //    if (towns.length === 0 || isValid === false){
-            //        req.flash("entryTwo",'invalid Regnumber')
-            //    }
 
-            //     else if(isValid === true){
-            //       
-            //    }
-  
+            res.redirect('/');
         }catch(err){
             console.log(err.stack) 
         }
     }
 
-async function clearAll (req, res) {
-   let clear = await registrationServices.clear();
-    res.redirect('/');
-  };
+//     async function getAllregs(req, res){
+//     try{
+//         let towns = await registrationServices.platesData();
+//         let database = towns;
+
+//         res.render('home',{database});
+//     }
+//     catch(err){}
+// }
+
+async function clearAll(req, res) {
+    try{
+        await registrationServices.clear();
+        res.redirect('/');
+
+    } catch (err) {
+        res.send(err.stack)
+    }
+}
   
 async function Display(req, res){
     const name = req.body.inputName;
@@ -74,7 +72,7 @@ async function Display(req, res){
 
         res.send('/');
     }
-    catch(err){regs
+    catch(err){
         res.send(err.stack)
     }
 }
