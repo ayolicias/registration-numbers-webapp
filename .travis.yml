@@ -8,4 +8,4 @@ node_js:
         
 before_script:
   - psql -c 'create database registration_webapp;' -U postgres 
-  - psql -U postgres -d registration_webapp -a -f tables.sql
+  - psql -U postgres -d registration_webapp -a -f table.sql
