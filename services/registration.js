@@ -7,7 +7,7 @@ module.exports = function registration(pool){
 
     async function selectTown(town){
         let result = await pool.query('select id from towns where initials=$1',[town]);
-        console.log(result.rows)
+        
         return result.rows;
     }
 
@@ -23,7 +23,6 @@ module.exports = function registration(pool){
    async function insert(reg,town) {
        
         let found = await pool.query('insert into registration_numbers (reg, town_id) values ($1,$2)', [reg, town])
-
         return found.rows;
        }
 
