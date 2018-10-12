@@ -1,4 +1,4 @@
-module.exports = function (pool){
+module.exports = function registration(pool){
 
     async function platesData(){
         let reg = await pool.query('select * from registration_numbers');
@@ -44,7 +44,6 @@ module.exports = function (pool){
     async function filterTown(data){
         
        let reg = await platesData();
-
        let temp = [];
         
         let id = data[0].id;
@@ -53,7 +52,7 @@ module.exports = function (pool){
         temp.push(reg[i]);
          }
        }
-    
+
        return temp;
     }
 
