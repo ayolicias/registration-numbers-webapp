@@ -15,7 +15,7 @@ module.exports = function(registrationServices){
         try{
             let regi = req.body.inputName;
             let regTag = regi.substring(0,3).toUpperCase().trim();
-            console.log(regTag);
+            // console.log(regTag);
             
             let isValid = await registrationServices.isValidTown(regTag);
             isValid = isValid.length;
@@ -33,7 +33,6 @@ module.exports = function(registrationServices){
                 req.flash("entryOne",'Reg Number is inValid. Please Enter a new Regnumber')
                 res.redirect('/');
             }
-
             else if(repeatedReg === 1){
                 req.flash("entryOne",'Reg Number is a duplicate. Please Enter a new Regnumber')
                 res.redirect('/');
@@ -42,31 +41,12 @@ module.exports = function(registrationServices){
         
             else{
                 let towns = await registrationServices.selectTown(regTag);
-                // console.log('---')
-
-                // console.log(towns[0].id)
-
-                // console.log('---')
+                
 
                 await registrationServices.insert(regi, towns[0].id);
                 res.redirect('/');
             }
 
-
-
-
-           
-                // console.log("Duplicate: ",repeatedReg);
-                
-
-            //    if (towns.length === 0 || isValid === false){
-            //        req.flash("entryTwo",'invalid Regnumber')
-            //    }
-
-            //     else if(isValid === true){
-            //       
-            //    }
-  
         }catch(err){
            console.log(err.stack) 
         }
