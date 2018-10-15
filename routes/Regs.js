@@ -39,11 +39,9 @@ module.exports = function(registrationServices){
              }
 
         
-            else{
-                let towns = await registrationServices.selectTown(regTag);
-                
-
-                await registrationServices.insert(regi, towns[0].id);
+             else{
+                let town = await registrationServices.selectTown(regTag);
+                await registrationServices.insert(regi, town.id);
                 res.redirect('/');
             }
 
@@ -62,23 +60,7 @@ async function clearAll(req, res) {
         res.send(err.stack)
     }
 }
-  
-async function Display(req, res){
-    const name = req.body.inputName;
-    let regs = req.body.town;
 
-    try{
-      
-        res.render('home',{name:results});
-
-       let displayMessage = await registrationServices.platesData(name, regs);
-
-        res.send('/');
-    }
-    catch(err){
-        res.send(err.stack)
-    }
-}
 async function regNumber(name,regs){
     let reg = await  findUser(name);
     if (reg.length == 0) {
@@ -92,16 +74,15 @@ async function regNumber(name,regs){
 async function filter(req, res){
     res.redirect('/')
 }
-
 async function filterTowns(req, res){
     let town = req.params.town; 
-  
-
     let results= await registrationServices.selectplate(town);
-    res.render('home',{regs:results});
+
+    // let towns = await registrationServices.getTowns();
+
+    res.render('home',{ regs: results });
 }
 return{
-    Display,
     home,
     addReg,
     filterTowns,

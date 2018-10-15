@@ -60,9 +60,14 @@
 
 .entryOne{
   color: #F54D32;
-  
 }
 .displayReg{
   margin-top: 12em;
 }
+.select{
+  padding: 20px;
+}
+#move{
+  margin-left: 30px;
 
+}

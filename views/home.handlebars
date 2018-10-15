@@ -13,20 +13,31 @@
       </div>  
   </form>
    <hr>
-
-  <div class="row select">
+  <div class="row select"id="filt">
     <div class="col-md-12">
       <select id="Select" name="towns" onchange="selectTown()">
-        <option value="alltowns">Select Towns</option>
         <option value="alltowns">All towns</option>
+        {{#each towns}}
+        <option value="{{initials}}">{{town_name}}</option>
+        {{/each}}
         <option value="CA">CapeTown</option>
+        {{#each towns}}
+        <option value="{{initials}}">{{town_name}}</option>
+        {{/each}}
         <option value="CAW">Paarl</option>
+        {{#each towns}}
+        <option value="{{initials}}">{{town_name}}</option>
+        {{/each}}
         <option value="CY">George</option>
+        {{#each towns}}
+        <option value="{{initials}}">{{town_name}}</option>
+        {{/each}}
         <option value="CJ" >Stellenbosch</option>
-       
+        {{#each towns}}
+        <option value="{{initials}}">{{town_name}}</option>
+        {{/each}}
       </select>
-
-      <a href="/reset"><button type="button"class="btn-success">Reset</button></a>
+      <a href="/reset"><button type="button"class="btn btn-warning btn-lg"id="move">RESET</button></a>
     </div>
   </div>
   

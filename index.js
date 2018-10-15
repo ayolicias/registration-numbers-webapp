@@ -42,12 +42,12 @@ app.use(session({
 
 app.use(flash());
 // requiring/importing factory  function 
-let regServices = require('./services/registration');
+let RegServices = require('./services/registration');
 // requiring/importing routes
-let regRoute = require('./routes/Regs');
+let RegRoute = require('./routes/Regs');
 
-const regsServices = regServices(pool);
-const regsRoute = regRoute(regsServices);
+const regsServices = RegServices(pool);
+const regsRoute = RegRoute(regsServices);
 
 app.get('/', regsRoute.home);
 app.post('/registration', regsRoute.addReg);
