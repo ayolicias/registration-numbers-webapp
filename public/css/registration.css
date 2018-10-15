@@ -4,35 +4,24 @@
   box-sizing: border-box;
 }
 
-/* Mobile Styles */
 @media only screen and (max-width: 400px) {
   body {
-    /* background-color: #F09A9D; Red */
+   
   }
 }
   
-  .display li {
-    list-style: none;
+  .display {
     border: 3px solid black;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: rgb(218, 203, 5);
-    width: 25em;
-    height: 6em;
-    margin: 20px auto;
-    display: block;
+    width: 10em;
+    height: 100%;
     padding: 10px;
-    text-align: left;
-    font-size: 12px;
+    text-align: center;
     font-weight: bold;
+    display: inline-block;
+    margin-left: 30px;
     
-  }
-
-  li.reg{
-    margin:20px;
-    float: left;
-    margin-top: 8em;
-    width: 15em;
-    height: 6em;
   }
 
 .allSections {
@@ -43,8 +32,6 @@
 .sectionOne h {
   text-align: center;
   font-size: 3em;
-  
- 
 }
 
 .header {
@@ -64,17 +51,18 @@
   text-decoration: rgb(179, 67, 67);
   font-size: 2em;
 }
-.buttons{
+#buttons{
   margin-top: 3em;
+  text-align: center;
+  font-size: 3em;
 
 }
 
 .entryOne{
   color: #F54D32;
+  
 }
-.entryTwo{
-  color: #F54D32;
+.displayReg{
+  margin-top: 12em;
 }
-.entryThree{
-  color: #F54D32;
-}
+
