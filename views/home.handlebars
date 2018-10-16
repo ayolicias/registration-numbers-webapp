@@ -6,8 +6,9 @@
   <form action="/registration" method="POST">
     <div class="row sectionOne" id="input">
       <div class="col-md-12" id="heading">
-       Reg Numbers</b><input type="text" name="inputName" class="Name"pattern="[A-Z]{2,3}\s\d{3}\W\d{3}"</input>
-               <button type="submit" class="btn-success" value="ADD">ADD</button>
+       <b>Reg Numbers:</</b><input type="text" name="inputName" class="Name"pattern="[A-Z]{2,3}\s\d{3}\W\d{3}"</input>
+     
+      <button type="submit" class="btn-success" value="ADD">ADD</button>
 
        </div>
       </div>  
@@ -16,28 +17,13 @@
   <div class="row select"id="filt">
     <div class="col-md-12">
       <select id="Select" name="towns" onchange="selectTown()">
-        <option value="alltowns">All towns</option>
+        {{!-- <option value="alltowns">All towns</option> --}}
         {{#each towns}}
         <option value="{{initials}}">{{town_name}}</option>
         {{/each}}
-        <option value="CA">CapeTown</option>
-        {{#each towns}}
-        <option value="{{initials}}">{{town_name}}</option>
-        {{/each}}
-        <option value="CAW">Paarl</option>
-        {{#each towns}}
-        <option value="{{initials}}">{{town_name}}</option>
-        {{/each}}
-        <option value="CY">George</option>
-        {{#each towns}}
-        <option value="{{initials}}">{{town_name}}</option>
-        {{/each}}
-        <option value="CJ" >Stellenbosch</option>
-        {{#each towns}}
-        <option value="{{initials}}">{{town_name}}</option>
-        {{/each}}
+      
       </select>
-      <a href="/reset"><button type="button"class="btn btn-warning btn-lg"id="move">RESET</button></a>
+      <a href="/reset"><button type="button"class="btn btn-danger btn-lg"id="move">RESET</button></a>
     </div>
   </div>
   

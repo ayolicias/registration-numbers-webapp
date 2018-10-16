@@ -57,5 +57,5 @@ app.get('/filter/:town', regsRoute.filterTowns);
 
 let PORT = process.env.PORT || 3011;
 app.listen(PORT, function () {
-  console.log("App started on Port", PORT);
+console.log("App started on Port", PORT);
 }); 

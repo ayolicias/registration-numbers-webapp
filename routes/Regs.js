@@ -3,9 +3,9 @@ module.exports = function(registrationServices){
     async function home(req,res){
         try{
             let reg = req.body.inputName;
-            let regs = await registrationServices.platesData()
-            
-            res.render('home',{reg, regs})
+             let regs = await registrationServices.platesData()
+            let towns = await registrationServices.getAllTowns()
+            res.render('home',{reg, regs,towns})
             }catch(err){
             res.send(err.stack);
         }
@@ -67,20 +67,27 @@ async function regNumber(name,regs){
      await insert(name,regs);
     }
      else{
-      await updateRegs(name,regs);
+      await updateRegs(name,regs, regs)
     }
   }
 
-async function filter(req, res){
+async function filter(req, res){regs
     res.redirect('/')
 }
 async function filterTowns(req, res){
     let town = req.params.town; 
+    if(town === 'alltowns'){
+        let allTowns = await registrationServices.getAllTowns()
+        res.render('home',{ regs: allTowns});
+    }
     let results= await registrationServices.selectplate(town);
+    let regs = await registrationServices.platesData();
+    let towns = await registrationServices.getAllTowns()
+
 
     // let towns = await registrationServices.getTowns();
 
-    res.render('home',{ regs: results });
+    res.render('home',{ regs: results,towns});
 }
 return{
     home,

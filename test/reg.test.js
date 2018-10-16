@@ -36,18 +36,18 @@ it('should return towns regNumbers', async function() {
   assert.strictEqual(result.length, 4);
 });
 
-it('should filter CA registration numbers', async function() {
-  let reg = service(pool);
-  await reg.insert('CA 871-987',1);
-  await reg.insert('CAW 871-967',3);
-  await reg.insert('CY 456-784',2);
-  await reg.insert('CJ 985-475',4);
-  let filter = await reg.selectplate('CA')
+// it('should filter CA registration numbers', async function() {
+//   let reg = service(pool);
+//   await reg.insert('CA 871-987',1);
+//   await reg.insert('CAW 871-967',3);
+//   await reg.insert('CY 456-784',2);
+//   await reg.insert('CJ 985-475',4);
+//   let filter = await reg.selectplate('CA')
   
-  assert.strictEqual(filter[0].reg,"CA 871-987")
-  assert.strictEqual(filter[0].town_id,1)
+//   assert.strictEqual(filter[0].reg,"CA 871-987")
+//   assert.strictEqual(filter[0].town_id,1)
 
-});
+// });
 
 it('should not duplicate registration numbers ', async function() {
   let reg = service(pool);

@@ -7,8 +7,13 @@ module.exports = function registration(pool) {
 
     async function selectTown(town) {
         let result = await pool.query('select id, town_name, initials from towns where initials=$1', [town]);
-
         return result.rows[0];
+    }
+
+    async function getAllTowns(){
+        let result = await pool.query('select town_name, initials from towns');
+        return result.rows;
+
     }
 
     async function isValidTown(town) {
@@ -71,6 +76,7 @@ module.exports = function registration(pool) {
         selectTown,
         filterTown,
         duplicateReg,
-        isValidTown
+        isValidTown,
+        getAllTowns
     }
 }
