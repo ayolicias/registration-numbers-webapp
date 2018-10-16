@@ -76,10 +76,10 @@ async function filter(req, res){regs
 }
 async function filterTowns(req, res){
     let town = req.params.town; 
-    if(town === 'alltowns'){
-        let allTowns = await registrationServices.getAllTowns()
-        res.render('home',{ regs: allTowns});
-    }
+    // if(town === 'alltowns'){
+    //     let allTowns = await registrationServices.getAllTowns()
+    //     res.render('home',{ regs: allTowns});
+    // }
     let results= await registrationServices.selectplate(town);
     let regs = await registrationServices.platesData();
     let towns = await registrationServices.getAllTowns()
