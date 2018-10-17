@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 800px) {
   body {
    
   }
@@ -16,7 +16,7 @@
     background-color: rgb(218, 203, 5);
     width: 10em;
     height: 100%;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-weight: bold;
     display: inline-block;
@@ -46,7 +46,7 @@
 }
 #heading {
   text-align: center;
-  margin-top: 5em;
+  margin-top: 3em;
   text-decoration: rgb(179, 67, 67);
   font-size: 2em;
 }
@@ -74,4 +74,6 @@
 .footer{
   background-color: blueviolet;
   padding: 1em;
+  color: rgb(6, 88, 17);
+  margin-top: 5em;
 }
