@@ -10,7 +10,7 @@ module.exports = function registration(pool) {
         return result.rows[0];
     }
 
-    async function getAllTowns(){
+    async function getAllTowns() {
         let result = await pool.query('select town_name, initials from towns');
         return result.rows;
 
@@ -45,10 +45,17 @@ module.exports = function registration(pool) {
             return await platesData();
         }
     }
-    async function filterTown(townData) {
-        let townId = townData.id;
-        let reg = await pool.query('select * from registration_numbers where town_id = $1', [townId]);
-        return reg.rows;
+    
+    async function filterTown(town) {
+        if (town === 'all') {
+            return await platesData();
+        }
+        let townId = await selectTown(town);
+        if (townId) {
+            let reg = await pool.query('select * from registration_numbers where town_id = $1', [townId.id]);
+            return reg.rows;
+        }
+        return 'unknown town';
     }
 
     async function allTowns() {

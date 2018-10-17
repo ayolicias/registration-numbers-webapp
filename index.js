@@ -52,7 +52,7 @@ const regsRoute = RegRoute(regsServices);
 app.get('/', regsRoute.home);
 app.post('/registration', regsRoute.addReg);
 app.get('/reset', regsRoute.clearAll);
-app.get('/filter', regsRoute.filter);
+// app.get('/filter', regsRoute.filter);
 app.get('/filter/:town', regsRoute.filterTowns);
 
 let PORT = process.env.PORT || 3011;

@@ -3,6 +3,11 @@
   <div class="header">
     <h1>Registration numbers WebApp</h1>
   </div>
+  <div class="entryOne">
+    <h2>
+      <span class="">{{messages.entryOne}}</span>
+    </h2>
+  </div>
   <form action="/registration" method="POST">
     <div class="row sectionOne" id="input">
       <div class="col-md-12" id="heading">
@@ -16,10 +21,11 @@
    <hr>
   <div class="row select"id="filt">
     <div class="col-md-12">
-      <select id="Select" name="towns" onchange="selectTown()">
-        {{!-- <option value="alltowns">All towns</option> --}}
+      
+      <select id="Select" name="towns" onchange="selectTown(this.value)">
+        <option name="towns" value="all">All Towns</option>
         {{#each towns}}
-        <option value="{{initials}}">{{town_name}}</option>
+        <option name="towns" value="{{initials}}">{{town_name}}</option>
         {{/each}}
       
       </select>
@@ -37,17 +43,14 @@
     </div>
   </div>
 
-  <div class="entryOne">
-    <h2>
-      <span class="">{{messages.entryOne}}</span>
-    </h2>
-  </div>
+   <div class="footer">
+      <h2>Copyright &copy; 2018. <em>Developed by Ziyanda Ndlamafa</em> </h2>
+    </div>
+  
   </div>
 
 <script>
-  function selectTown() {
-    let selectElem = document.querySelector('#Select');
-    console.log(selectElem.value);
-    location.href = '/filter/' + selectElem.value;
+  function selectTown(value) {
+    location.href = '/filter/' + value;
   }
 </script>

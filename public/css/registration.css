@@ -37,7 +37,6 @@
 .header {
   background-color: blueviolet;
   padding: 5em;
-
 }
 .header h1 {
   font-size: 5em;
@@ -60,6 +59,7 @@
 
 .entryOne{
   color: #F54D32;
+  margin-top: 2em;
 }
 .displayReg{
   margin-top: 12em;
@@ -70,4 +70,8 @@
 #move{
   margin-left: 30px;
 
+}
+.footer{
+  background-color: blueviolet;
+  padding: 1em;
 }

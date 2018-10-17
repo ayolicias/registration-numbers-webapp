@@ -71,21 +71,11 @@ async function regNumber(name,regs){
     }
   }
 
-async function filter(req, res){regs
-    res.redirect('/')
-}
+
 async function filterTowns(req, res){
     let town = req.params.town; 
-    // if(town === 'alltowns'){
-    //     let allTowns = await registrationServices.getAllTowns()
-    //     res.render('home',{ regs: allTowns});
-    // }
-    let results= await registrationServices.selectplate(town);
-    let regs = await registrationServices.platesData();
-    let towns = await registrationServices.getAllTowns()
-
-
-    // let towns = await registrationServices.getTowns();
+    let results = await registrationServices.filterTown(town);
+    let towns = await registrationServices.getAllTowns();
 
     res.render('home',{ regs: results,towns});
 }
@@ -94,7 +84,6 @@ return{
     addReg,
     filterTowns,
     clearAll,
-    filter,
     regNumber
 }
 }

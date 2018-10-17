@@ -13,6 +13,11 @@
     <div class="wrapper">
     {{{body}}}
     </div>
+    <script>
+      let url_parts = location.href.split('/')
+      document.querySelector('select').value = url_parts[url_parts.length - 1];
+
+    </script>
 </body>
 </html>
 
